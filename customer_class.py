@@ -1,9 +1,9 @@
-class CustomerClass:
+class Customer:
   _id_counter = 0
   
   def __init__(self):
-    CustomerClass._id_counter+= 1
-    self.customerID = CustomerClass._id_counter
+    Customer._id_counter+= 1
+    self.customerID = Customer._id_counter
     self.fname = ""
     self.lname = ""
     self.username = ""
