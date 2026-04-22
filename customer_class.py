@@ -32,10 +32,10 @@ class Customer:
     return self.username
 
   def setAddress(self, user_input: str):
-    self.adress = user_input
+    self.address = user_input
 
-  def getAdress(self) -> str:
-    return self.adress
+  def getAddress(self) -> str:
+    return self.address
 
   def setPNumber(self, user_input: int):
     self.pnumber = user_input
