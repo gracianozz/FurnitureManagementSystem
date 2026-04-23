@@ -1,0 +1,11 @@
+customerID,fName,lName,username,password,address,PNumber
+1,John,Doe,jdoe123,pass123,123 Main St,7135553001
+2,Jane,Smith,jsmith456,hello456,456 Oak Ave,7135553002
+3,Michael,Brown,mbrown789,secure789,789 Pine Rd,7135553003
+4,Sarah,Johnson,sjohnson321,pass321,321 Elm St,7135553004
+5,David,Wilson,dwilson654,abc123,654 Maple Dr,7135553005
+6,Laura,Martinez,lmartinez987,password1,987 Cedar Ln,7135553006
+7,Chris,Anderson,canderson159,qwerty456,159 Birch St,7135553007
+8,Jessica,Thomas,jthomas753,letmein789,753 Walnut Ave,7135553008
+9,Daniel,Taylor,dtaylor852,pass999,852 Cherry Rd,7135553009
+10,Ashley,Moore,amoore951,customer123,951 Spruce St,7135553010
