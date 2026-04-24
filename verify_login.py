@@ -1,5 +1,6 @@
-import csv
 # The verifyLogin class provides methods to check the credentials of managers, staff, and customers by reading from their respective CSV files.
+import csv
+
 class verifyLogin:
     def __init__(self, file_path=None):
         self.file_path = file_path
@@ -11,9 +12,9 @@ class verifyLogin:
 
             for row in reader:
                 if row.get("username") == username and row.get("password") == password:
-                    return True
+                    return row
 
-        return False
+        return None
     
 #If option 2 is selected, the staff file of credentials will be checked
     def check_staff_credentials(self, username, password):
@@ -22,9 +23,9 @@ class verifyLogin:
 
             for row in reader:
                 if row.get("username") == username and row.get("password") == password:
-                    return True
-                
-        return False
+                    return row
+
+        return None
 
 #If option 3 is selected, the customer file of credentials will be checked. 
     def check_customer_credentials(self, username, password):
@@ -33,9 +34,9 @@ class verifyLogin:
 
             for row in reader:
                 if row.get("username") == username and row.get("password") == password:
-                    return True
+                    return row
 
-        return False
+        return None
     
 
 #Sign up method classes to ensure username are unique and not taken
@@ -51,33 +52,39 @@ class verifyLogin:
                     f.write('\n')
 
     def sign_up_manager(self, fname, lname, username, password):
+        last_id = 0
         with open("Managers/managers.csv", "r") as file:
             reader = csv.DictReader(file)
             for row in reader:
                 if row.get("username") == username:
                     print("Username already taken. Please choose a different username.")
                     return False
+                last_id = int(row.get("managerID", 0))
 
+        new_id = last_id + 1
         self._ensure_newline("Managers/managers.csv")
         with open("Managers/managers.csv", "a", newline="") as file:
             writer = csv.writer(file)
-            writer.writerow([fname, lname, username, password])
+            writer.writerow([new_id, fname, lname, username, password])
 
         print("Manager account created successfully!")
         return True
 
     def sign_up_staff(self, fname, lname, username, password):
+        last_id = 0
         with open("Staff/staff.csv", "r") as file:
             reader = csv.DictReader(file)
             for row in reader:
                 if row.get("username") == username:
                     print("Username already taken. Please choose a different one.")
                     return False
+                last_id = int(row.get("staffID", 0))
 
+        new_id = last_id + 1
         self._ensure_newline("Staff/staff.csv")
         with open("Staff/staff.csv", "a", newline="") as file:
             writer = csv.writer(file)
-            writer.writerow([fname, lname, username, password])
+            writer.writerow([new_id, fname, lname, username, password])
 
         print("Staff account created successfully!")
         return True
