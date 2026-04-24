@@ -1,23 +1,27 @@
 #This class will display a CLI for the user to log in as a manager, staff, or customer
 from verify_login import verifyLogin
 
+from signUp_class import signUp 
+
 verify = verifyLogin()
+sign_up = signUp()
 
 # The LoginInterface class provides a command-line interface for users to log in as a manager, staff, or customer.
 class LoginInterface:
     def __init__(self):
         pass
 
-    def display_login_options(self):
+    def display_login_menu(self):
         print("Welcome to the Furniture Management System!")
         print("1. Manager Login")
         print("2. Staff Login")
         print("3. Customer Login")
+        print("4. Sign Up")
 
 # The user_choice method prompts the user to select a login option and handles the login process based on the user's choice.
     def user_choice(self):
         while True:
-            choice = int(input("Please select an option (1-3): "))
+            choice = int(input("Please select an option (1-4): "))
 
             if choice == 1:
                 is_valid = verify.check_manager_credentials(input("Enter Manager Username: "), input("Enter Manager Password: "))
@@ -25,6 +29,9 @@ class LoginInterface:
                 is_valid = verify.check_staff_credentials(input("Enter Staff Username: "), input("Enter Staff Password: "))
             elif choice == 3:
                 is_valid = verify.check_customer_credentials(input("Enter Customer Username: "), input("Enter Customer Password: "))
+            elif choice == 4:
+                sign_up.signUp_choices()
+                continue
             else:
                 print("Invalid choice. Please try again.")
                 continue
