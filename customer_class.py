@@ -1,9 +1,9 @@
 class Customer:
   _id_counter = 0
   
-  def __init__(self):
-    Customer._id_counter+= 1
-    self.customerID = Customer._id_counter
+  def __init__(self, customer_id=None):
+    Customer._id_counter += 1
+    self.customerID = customer_id if customer_id is not None else Customer._id_counter
     self.fname = ""
     self.lname = ""
     self.username = ""

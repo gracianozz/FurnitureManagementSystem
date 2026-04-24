@@ -35,7 +35,7 @@ class LoginInterface:
             if choice == 1:
                 row = verify.check_manager_credentials(input("Enter Manager Username: "), input("Enter Manager Password: "))
                 if row:
-                    manager = Manager(fname=row["fName"], lname=row["lName"])
+                    manager = Manager(fname=row["fName"], lname=row["lName"], manager_id=int(row["managerID"]))
                     main_interfaces.Manager_Interface(manager)
                     break
                 else:
@@ -44,7 +44,7 @@ class LoginInterface:
             elif choice == 2:
                 row = verify.check_staff_credentials(input("Enter Staff Username: "), input("Enter Staff Password: "))
                 if row:
-                    staff = Staff(fname=row["fName"], lname=row["lName"])
+                    staff = Staff(fname=row["fName"], lname=row["lName"], staff_id=int(row["staffID"]))
                     main_interfaces.Staff_Interface(staff)
                     break
                 else:
@@ -53,7 +53,7 @@ class LoginInterface:
             elif choice == 3:
                 row = verify.check_customer_credentials(input("Enter Customer Username: "), input("Enter Customer Password: "))
                 if row:
-                    customer = Customer()
+                    customer = Customer(customer_id=int(row["customerID"]))
                     customer.setFName(row["fName"])
                     customer.setLName(row["lName"])
                     customer.setUsername(row["username"])
