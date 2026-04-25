@@ -1,4 +1,10 @@
-#The start of the Furniture Recommendation System
+# Artifact Name: main.py
+# Description: Entry point for the system.
+# Authors: Gustavo, Mohanad, Nate, Ashfaqh, JaQuan
+# Date: April 25, 2026
+
+
+
 
 from Login_interface import LoginInterface
 
