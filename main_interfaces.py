@@ -33,7 +33,7 @@ class Main_Interfaces:
                 search.FurnitureSearch()
 
             elif choice == 2:
-                place_order.PlaceOrder()
+                place_order.PlaceOrder(customer)
 
             elif choice == 3:
                 Order.viewOrders(customer.getCustomerID())

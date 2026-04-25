@@ -24,3 +24,4 @@ OrderID,CustomerID,SKU_ID,OrderStatus,PurchaseDate,EstimatedDelivery
 1023,11,SKU415,Shipped,2026-03-28,2026-04-02
 1024,1,SKU390,Processing,2026-04-18,2026-04-23
 1025,5,SKU205,Delivered,2026-01-12,2026-01-17
+1026,11,SKU102,Confirmed,2026-04-25,2026-05-02

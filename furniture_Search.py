@@ -33,4 +33,4 @@ class Furniture_Search:
             return
 
         for item in results:
-            print(f"- {item['InventoryName']} | {item['Location']} | {item['Status']}")
+            print(f"- {item['InventoryName']} | {item['Status']} | {item['Quantity']} | ${item['Price']}")
