@@ -1,0 +1,27 @@
+InventoryID,SKU_ID,InventoryName,Location,Status
+2001,SKU102,Office Chair,Houston Warehouse A,In Stock
+2002,SKU215,Wooden Desk,Dallas Warehouse B,Low Stock
+2003,SKU331,Bookshelf,Houston Warehouse A,Out of Stock
+2004,SKU120,Standing Desk,Austin Warehouse C,In Stock
+2005,SKU410,Coffee Table,Houston Warehouse B,In Stock
+2006,SKU222,Desk Lamp,Dallas Warehouse B,Reserved
+2007,SKU305,Filing Cabinet,Austin Warehouse C,In Stock
+2008,SKU118,Gaming Chair,Houston Warehouse A,Low Stock
+2009,SKU500,Sectional Sofa,Dallas Warehouse A,In Stock
+2010,SKU275,Dining Table,Houston Warehouse B,In Stock
+2011,SKU199,Nightstand,Austin Warehouse C,Out of Stock
+2012,SKU145,Office Desk,Houston Warehouse A,In Stock
+2013,SKU360,TV Stand,Dallas Warehouse B,Low Stock
+2014,SKU402,Recliner Chair,Houston Warehouse B,Reserved
+2015,SKU111,Bed Frame,Austin Warehouse C,In Stock
+2016,SKU290,Bar Stool,Houston Warehouse A,In Stock
+2017,SKU330,Storage Cabinet,Dallas Warehouse A,Out of Stock
+2018,SKU150,End Table,Houston Warehouse B,Low Stock
+2019,SKU220,Computer Desk,Austin Warehouse C,Reserved
+2020,SKU180,Mattress,Dallas Warehouse B,In Stock
+2021,SKU415,Wardrobe,Houston Warehouse A,In Stock
+2022,SKU390,Office Drawer,Houston Warehouse B,Low Stock
+2023,SKU205,Bookshelf Small,Austin Warehouse C,In Stock
+2024,SKU275,Dining Table,Dallas Warehouse A,Reserved
+2025,SKU410,Coffee Table,Houston Warehouse A,Low Stock
+
