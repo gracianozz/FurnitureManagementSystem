@@ -22,12 +22,12 @@ class inventory_control:
     
     def get_next_ids(self):
         rows = self._read_data()
-        
-        #inventory id logic
+
+        # inventory id logic
         existing_ids = [int(r["InventoryID"]) for r in rows if r["InventoryID"].isdigit()]
         next_inv_id = str(max(existing_ids) + 1) if existing_ids else "2001"
         
-        #sku id logic
+        # sku id logic
         used_skus = {int(r["SKU_ID"].replace("SKU", "")) for r in rows if "SKU" in r["SKU_ID"]}
         next_sku_num = 101
         for i in range(101, 999):
@@ -39,6 +39,7 @@ class inventory_control:
     def add_furniture(self, name):
         inv_id, sku_id = self.get_next_ids()
 
+        # initializes new furniture item
         new_item = Inventory(
             inventoryID = inv_id,
             name = name,
