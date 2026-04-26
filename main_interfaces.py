@@ -8,13 +8,13 @@ from place_order import Place_Order
 from order_class import Order
 from customer_support import CustomerSupport
 from stock_notifier import stock
-from inventory_control import manage_inventory
+from inventory_UI import FurnitureMenu
 
 search = Furniture_Search()
 place_order = Place_Order()
 support = CustomerSupport()
 stocks = stock()
-inventory = manage_inventory()
+inventory = FurnitureMenu()
 
 class Main_Interfaces:
     def __init__(self):
@@ -90,10 +90,10 @@ class Main_Interfaces:
                 stocks.check_stock()
 
             elif managerChoice == 2:
-                inventory.manage_inventory()
+                inventory.main_menu()
 
             elif managerChoice == 3:
-                inventory.manage_order()
+                place_order.PlaceOrder(manager)
 
             elif managerChoice == 4:
                 print("Goodbye!")

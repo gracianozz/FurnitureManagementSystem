@@ -14,6 +14,9 @@ class Manager:
         self.fname = fname
         self.lname = lname
 
+    def getCustomerID(self):
+        return self.managerID
+
     def search_by_sku(self):
         """Allows manager to persistently search for inventory items by SKU ID."""
         while True:

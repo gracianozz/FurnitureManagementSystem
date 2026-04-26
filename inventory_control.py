@@ -1,5 +1,4 @@
 import csv
-from inventory import Inventory 
 from furniture_Search import Furniture_Search
 
 class inventory_control:
@@ -10,25 +9,23 @@ class inventory_control:
     def _read_data(self):
         try:
             with open(self.file_path, "r", newline='') as file:
-                return list(csv.DictReader(file, delimiter = '\t'))
+                return list(csv.DictReader(file))
         except FileNotFoundError:
             return []
 
     def _write_data(self, rows):
         with open(self.file_path, "w", newline='') as file:
-            writer = csv.DictWriter(file, fieldnames =self.headers, delimiter='\t')
+            writer = csv.DictWriter(file, fieldnames=self.headers)
             writer.writeheader()
             writer.writerows(rows)
     
     def get_next_ids(self):
-        rows = self._read_data()
+        rows = [r for r in self._read_data() if r["InventoryID"].isdigit()]
 
-        # inventory id logic
-        existing_ids = [int(r["InventoryID"]) for r in rows if r["InventoryID"].isdigit()]
+        existing_ids = [int(r["InventoryID"]) for r in rows]
         next_inv_id = str(max(existing_ids) + 1) if existing_ids else "2001"
-        
-        # sku id logic
-        used_skus = {int(r["SKU_ID"].replace("SKU", "")) for r in rows if "SKU" in r["SKU_ID"]}
+
+        used_skus = {int(r["SKU_ID"][3:]) for r in rows if r["SKU_ID"].startswith("SKU") and r["SKU_ID"][3:].isdigit()}
         next_sku_num = 101
         for i in range(101, 999):
             if i not in used_skus:
@@ -38,20 +35,24 @@ class inventory_control:
 
     def add_furniture(self, name):
         inv_id, sku_id = self.get_next_ids()
+        location = input("Location: ")
+        quantity = int(input("Quantity: "))
+        price = float(input("Price: "))
 
-        # initializes new furniture item
-        new_item = Inventory(
-            inventoryID = inv_id,
-            name = name,
-            skuID = sku_id,
-            location = input("Location: "),
-            quantity = int(input("Quantity: ")),
-            status = "In Stock",
-            price = input("Price: "))
+        new_row = {
+            "InventoryID": inv_id,
+            "SKU_ID": sku_id,
+            "InventoryName": name,
+            "Location": location,
+            "Status": "Out of Stock" if quantity == 0 else "Low Stock" if quantity <= 5 else "In Stock",
+            "Quantity": quantity,
+            "Price": price
+        }
 
         rows = self._read_data()
-        rows.append(vars(new_item))
+        rows.append(new_row)
         self._write_data(rows)
+
         print(f"Success: Added {name} as {sku_id}")
 
     def remove_furniture(self, search_term):
@@ -113,13 +114,25 @@ class inventory_control:
 
         rows = self._read_data()
         item = next((r for r in rows if r["SKU_ID"] == target_sku), None)
-        
+
+        if item is None:
+            print("Item not found in inventory.")
+            return
+
         print(f"Editing {item['InventoryName']}. Press Enter to skip fields.")
         item["InventoryName"] = input(f"Name [{item['InventoryName']}]: ") or item["InventoryName"]
         item["Location"] = input(f"Location [{item['Location']}]: ") or item["Location"]
         item["Quantity"] = input(f"Quantity [{item['Quantity']}]: ") or item["Quantity"]
-        item["Status"] = input(f"Status [{item['Status']}]: ") or item["Status"]
         item["Price"] = input(f"Price [{item['Price']}]: ") or item["Price"]
 
+        qty = int(item["Quantity"]) if str(item["Quantity"]).isdigit() else 0
+        if item["Status"] != "Reserved":
+            if qty == 0:
+                item["Status"] = "Out of Stock"
+            elif qty <= 5:
+                item["Status"] = "Low Stock"
+            else:
+                item["Status"] = "In Stock"
+
         self._write_data(rows)
-        print("Inventory updated.")
+        print(f"Inventory updated. Status set to '{item['Status']}' based on quantity {item['Quantity']}.")

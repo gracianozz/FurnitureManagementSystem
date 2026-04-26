@@ -14,24 +14,24 @@ class Furniture_Search:
     def __init__(self):
         pass
 
-    def FurnitureSearch(self):
-        search = input("What furniture are you looking for today?: ")
-        print(f"Searching for {search}...")
+    def FurnitureSearch(self, search_term=None):
+        if search_term is None:
+            search_term = input("What furniture are you looking for today?: ")
+        print(f"Searching for {search_term}...")
 
         found_items = []
 
         try:
             with open("Inventory/inventory.csv", "r") as file:
-                reader = csv.DictReader(file, delimiter = '\t')
+                reader = csv.DictReader(file)
                 for row in reader:
-                    if row.get("InventoryName", "").lower() == search.lower():
+                    if row.get("InventoryName", "").lower() == search_term.lower():
                         found_items.append(row)
         except FileNotFoundError:
             print("Error: Inventory file not found.")
             return []
 
-    # pass search + results to next function
-        self.displaySearchResults(search, found_items)
+        self.displaySearchResults(search_term, found_items)
         return found_items
 
     def displaySearchResults(self, search, results):
