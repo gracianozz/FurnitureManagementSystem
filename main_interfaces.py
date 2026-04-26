@@ -1,3 +1,8 @@
+# Artifact Name: main_interfaces.py
+# Description: Acts as the Boundary layer, routing users to role-specific menus.
+# Authors: Gustavo, Mohanad, Nate, Ashfaqh, JaQuan
+# Date: April 25, 2026
+
 from furniture_Search import Furniture_Search
 from place_order import Place_Order
 from order_class import Order

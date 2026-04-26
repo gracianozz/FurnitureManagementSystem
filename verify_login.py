@@ -1,3 +1,8 @@
+# Artifact Name: verify_login.py
+# Description: Provides backend logic for validating credentials against CSV databases.
+# Authors: Gustavo, Mohanad, Ashfaqh, JaQuan, Nate
+# Date: April 25, 2026
+
 # The verifyLogin class provides methods to check the credentials of managers, staff, and customers by reading from their respective CSV files.
 import csv
 

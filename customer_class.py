@@ -1,3 +1,8 @@
+# Artifact Name: customer_class.py
+# Description: Entity class for managing customer profile data and attributes.
+# Authors: Gustavo, Mohanad, Nate, Ashfaqh, JaQuan
+# Date: April 25, 2026
+
 class Customer:
   _id_counter = 0
   

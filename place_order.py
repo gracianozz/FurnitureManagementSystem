@@ -1,3 +1,8 @@
+# Artifact Name: place_order.py
+# Description: Manages the customer checkout process and inventory updates.
+# Authors: Gustavo, Mohanad, Nate, Ashfaqh, JaQuan
+# Date: April 25, 2026
+
 import csv
 from datetime import date, timedelta
 

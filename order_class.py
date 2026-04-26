@@ -1,3 +1,8 @@
+# Artifact Name: order_class.py
+# Description: Entity class representing individual furniture orders and tracking data.
+# Authors: Gustavo, Mohanad, Nate, Ashfaqh, JaQuan
+# Date: April 25, 2026
+
 from datetime import datetime, timedelta
 import csv
 
