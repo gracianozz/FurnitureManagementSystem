@@ -1,3 +1,8 @@
+# Artifact Name: signUp_class.py
+# Description: Manages the registration process for new Managers, Staff, and Customers.
+# Authors: Gustavo, Mohanad, Nate, Ashfaqh, JaQuan
+# Date: April 25, 2026
+
 import csv
 
 from verify_login import verifyLogin

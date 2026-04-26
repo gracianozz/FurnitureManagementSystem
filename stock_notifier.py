@@ -1,3 +1,8 @@
+# Artifact Name: stock_notifier.py
+# Description: Logic for monitoring inventory levels and generating low-stock notifications.
+# Authors: Gustavo, Mohanad, Nate, Ashfaqh, JaQuan
+# Date: April 25, 2026
+
 import csv
 
 INVENTORY_PATH = "Inventory/inventory.csv"

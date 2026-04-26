@@ -1,3 +1,8 @@
+# Artifact Name: inventory_class.py
+# Description: Entity class representing individual furniture items and their attributes.
+# Authors: Gustavo, Mohanad, Nate, Ashfaqh, JaQuan
+# Date: April 25, 2026
+
 
 class Inventory():
     

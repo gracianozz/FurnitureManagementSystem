@@ -1,3 +1,8 @@
+# Artifact Name: Login_interface.py
+# Description: Boundary class providing the main CLI for user authentication and role-based routing.
+# Authors: Gustavo, Mohanad, Nate, Ashfaqh, JaQuan
+# Date: April 25, 2026
+
 #This class will display a CLI for the user to log in as a manager, staff, or customer
 from verify_login import verifyLogin
 from signUp_class import signUp

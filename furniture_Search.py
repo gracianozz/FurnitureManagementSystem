@@ -1,3 +1,8 @@
+# Artifact Name: furniture_Search.py
+# Description: Implements the search functionality for customers to browse the inventory.
+# Authors: Gustavo, Mohanad, Nate, Ashfaqh, JaQuan
+# Date: April 25, 2026
+
 #This class will help the customer search for any furniture they want to buy.
 
 

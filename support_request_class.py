@@ -1,3 +1,8 @@
+# Artifact Name: support_request_class.py
+# Description: Entity class for creating and tracking support request message logs.
+# Authors: Gustavo, Mohanad, Nate, Ashfaqh, JaQuan
+# Date: April 25, 2026
+
 from datetime import datetime
 
 class SupportRequest:

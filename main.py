@@ -1,5 +1,5 @@
 # Artifact Name: main.py
-# Description: Entry point for the system.
+# Description: The entry point of the Furniture Management System; initializes the login interface.
 # Authors: Gustavo, Mohanad, Nate, Ashfaqh, JaQuan
 # Date: April 25, 2026
 
