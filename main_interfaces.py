@@ -29,7 +29,7 @@ class Main_Interfaces:
             print("Customer Menu:")
             print("1. Furniture Search")
             print("2. Place Order")
-            print("3. View Orders")
+            print("3. Track My Order(s)")
             print("4. Customer Support")
             print("5. Quit")
             choice = int(input("Please select an option (1-5): "))
@@ -38,13 +38,13 @@ class Main_Interfaces:
                 search.FurnitureSearch()
 
             elif choice == 2:
-                place_order.PlaceOrder(customer)
+                place_order.PlaceCustomerOrder(customer)
 
             elif choice == 3:
                 Order.viewOrders(customer.getCustomerID())
 
             elif choice == 4:
-                support.support_options()
+                support.support_options(customer.getCustomerID(), customer.getFName())
 
             elif choice == 5:
                 print("Goodbye!")
@@ -65,7 +65,7 @@ class Main_Interfaces:
             staffChoice = int(input("Please select an option (1-3): "))
 
             if staffChoice == 1:
-                support.contact_support()
+                support.contact_support(staff.staffID)
             elif staffChoice == 2:
                 search.FurnitureSearch()
             elif staffChoice == 3:
@@ -93,7 +93,7 @@ class Main_Interfaces:
                 inventory.main_menu()
 
             elif managerChoice == 3:
-                place_order.PlaceOrder(manager)
+                place_order.PlaceManagerOrder(manager)
 
             elif managerChoice == 4:
                 print("Goodbye!")

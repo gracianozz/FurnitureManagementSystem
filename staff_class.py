@@ -7,12 +7,12 @@ import csv
 import os
 
 class Staff:
-    def __init__(self, staff_id):
-        """Initializes the Staff object and attempts to load data from the database."""
+    def __init__(self, staff_id, fname=None, lname=None):
         self.staffID = staff_id
-        self.fname = "Unknown"
-        self.lname = ""
-        self.load_staff_data()
+        self.fname = fname or "Unknown"
+        self.lname = lname or ""
+        if fname is None:
+            self.load_staff_data()
 
     def load_staff_data(self):
         """Searches Staff/staff.csv for the ID and populates the object's attributes."""

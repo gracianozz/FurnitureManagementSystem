@@ -1,0 +1,23 @@
+supportID,customerID,customerfName,CustomerMessage,staffResponse,staffID
+1,8,Jessica,I received the wrong item in my order.,"Hi Jessica, we will send the correct item and arrange a return for the wrong one",2
+2,3,Michael,My order status hasn't updated in days.,,0
+3,1,John,"I can't log into my account, it keeps saying invalid password.","Hi John, please try resetting your password using the forgot password option",1
+4,10,Ashley,I entered the wrong phone number on my profile.,,0
+5,5,David,The product I received is damaged.,"Hi David, yes you can cancel your order after placing it, just send me your orderID and ill get that taken care of.",13
+6,2,Jane,The website is not loading properly.,"Hi Jane, please try clearing your browser cache or using another browser",6
+7,11,Gustavo,I forgot my username and can't log in.,,0
+8,7,Chris,Do you offer refunds on returned items?,"Hi Chris, yes we offer refunds within 30 days of purchase",7
+9,4,Sarah,I was charged twice for my purchase.,,0
+10,6,Laura,How do I reset my account password?,"Hi Laura, click 'Forgot Password' on the login page to reset it",6
+11,9,Daniel,Can I track my order online?,"Hi Daniel, yes you can track your order using the tracking link sent to your email",9
+12,2,Jane,"My order hasn't arrived yet, it's been over a week.","Hi Jane, we apologize for the delay. Your order is in transit and should arrive soon",2
+13,5,David,Can I cancel my order after placing it?,"Hello David, yes you can cancel your order after placing it, just send your orderID and ill take care of it.",13
+14,7,Chris,Do you have customer support available on weekends?,"Hi Chris, yes, our support team is available 7 days a week",9
+15,8,Jessica,My account was locked after too many attempts.,"Hi Jessica, your account has been unlocked. Please try logging in again",8
+16,3,Michael,Can I change my delivery address after placing an order?,"Hi Michael, yes you can update your address before the order ships. Contact us ASAP",3
+17,1,John,Do you offer discounts for first-time customers?,"Hi John, yes we occasionally offer promo codes for new users. Check your email.",4
+18,6,Laura,My payment keeps getting declined.,"Hi Laura, please verify your card details or try another payment method.",10
+19,9,Daniel,Can I change my order after placing it?,"Hi Daniel, changes can be made before shipping. Contact support quickly.",12
+20,4,Sarah,I never received a confirmation email.,"Hi Sarah, please check your spam folder or request a resend.",11
+21,11,Gustavo,How can i track my order?,"Hello Gustavo, you can track your order by checking ""My orders"" in your app.",13
+22,11,Gustavo,How do I return my order that got delivered?,,0
