@@ -14,45 +14,23 @@ class Manager:
         self.fname = fname
         self.lname = lname
 
-    def getCustomerID(self):
+    def getmanagerID(self) -> int:
         return self.managerID
+    
+    def setFName(self, user_input: str):
+        self.fname = user_input
 
-    def search_by_sku(self):
-        """Allows manager to persistently search for inventory items by SKU ID."""
-        while True:
-            sku_to_find = input("\nEnter SKU to search (e.g., SKU222) or 'exit': ").strip().upper()
-            
-            if sku_to_find == 'EXIT':
-                print("Exiting search menu...")
-                break
+    def getFName(self) -> str:
+        return self.fname
 
-            found = False
-            try:
-                # 'utf-8-sig' handles invisible Excel characters (BOM)
-                with open("Inventory/inventory.csv", "r", encoding='utf-8-sig') as file:
-                    reader = list(csv.reader(file))
-                    
-                    if len(reader) <= 1:
-                        print("!!! ERROR: Inventory database is currently empty.")
-                        break
+    def setLName(self, user_input: str):
+        self.lname = user_input
 
-                    # Start from index 1 to skip the header row
-                    for row in reader[1:]:
-                        # row[1] = SKU_ID, row[2] = Name, row[3] = Loc, row[5] = Qty, row[6] = Price
-                        if len(row) > 1 and row[1].strip().upper() == sku_to_find:
-                            print(f"\n[MATCH FOUND]: {row[2]}")
-                            print(f"Location: {row[3]} | Stock: {row[5]} | Price: ${row[6]}")
-                            found = True
-                            break 
-                    
-                    if not found:
-                        print(f"!!! ERROR: SKU '{sku_to_find}' not found in database. Please try again.")
-            except FileNotFoundError:
-                print("!!! ERROR: System cannot find 'Inventory/inventory.csv'. Check file path.")
-                break
+    def getLName(self) -> str:
+        return self.lname
 
-# Local testing block
-if __name__ == "__main__":
-    current_manager = Manager("Ashfaqh", "Rahmath")
-    print(f"--- Welcome Manager {current_manager.fname} (ID: {current_manager.managerID}) ---")
-    current_manager.search_by_sku()
+    def setUsername(self, user_input: str):
+        self.username = user_input
+
+    def getUsername(self) -> str:
+        return self.username

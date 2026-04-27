@@ -1,5 +1,5 @@
 InventoryID,SKU_ID,InventoryName,Location,Status,Quantity,Price
-2001,SKU102,Office Chair,Houston Warehouse A,In Stock,38,89.99
+2001,SKU102,Office Chair,Houston Warehouse A,In Stock,34,89.99
 2002,SKU215,Wooden Desk,Dallas Warehouse B,Low Stock,5,249.99
 2003,SKU331,Bookshelf,Houston Warehouse A,Out of Stock,0,129.99
 2004,SKU120,Standing Desk,Austin Warehouse C,In Stock,30,399.99
@@ -19,7 +19,7 @@ InventoryID,SKU_ID,InventoryName,Location,Status,Quantity,Price
 2019,SKU220,Computer Desk,Austin Warehouse C,Reserved,9,329.99
 2020,SKU180,Mattress,Dallas Warehouse B,In Stock,20,699.99
 2021,SKU415,Wardrobe,Houston Warehouse A,In Stock,11,549.99
-2022,SKU390,Office Drawer,Houston Warehouse B,Low Stock,3,139.99
+2022,SKU390,Office Drawer,Houston Warehouse B,In Stock,8,139.99
 2023,SKU205,Bookshelf Small,Austin Warehouse C,In Stock,26,99.99
 2024,SKU101,Gaming Chair,Dallas Warehouse C,In Stock,20,129.99
 2025,SKU103,Dining Table,Houston Warehouse A,Low Stock,5,199.99

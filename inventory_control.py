@@ -60,7 +60,6 @@ class inventory_control:
         matches = search_tool.FurnitureSearch(search_term)
 
         if not matches:
-            print("Item not found.")
             return
 
         if len(matches) > 1:
@@ -95,12 +94,12 @@ class inventory_control:
             return
 
         if len(matches) > 1:
-            print("\nMultiple items found. Which one would you like to remove?")
+            print("\nMultiple items found. Which one would you like to edit?")
             for i, item in enumerate(matches):
                 print(f"{i + 1}. {item['InventoryName']} | {item['Location']} (SKU: {item['SKU_ID']})")
             
             try:
-                choice = int(input("\nEnter the number to remove (or 0 to cancel): "))
+                choice = int(input("\nEnter the number to edit (or 0 to cancel): "))
                 if choice == 0: return
                 
                 # Get specific sku ID, -1 to adjust for 0

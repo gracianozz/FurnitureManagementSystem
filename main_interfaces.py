@@ -7,13 +7,13 @@ from furniture_Search import Furniture_Search
 from place_order import Place_Order
 from order_class import Order
 from customer_support import CustomerSupport
-from stock_notifier import stock
+from stock_notifier import stockNotifier
 from inventory_UI import FurnitureMenu
 
 search = Furniture_Search()
 place_order = Place_Order()
 support = CustomerSupport()
-stocks = stock()
+stocks = stockNotifier()
 inventory = FurnitureMenu()
 
 class Main_Interfaces:
@@ -84,6 +84,8 @@ class Main_Interfaces:
             elif staffChoice == 3:
                 print("Goodbye!")
                 break
+            else:
+                print("Invalid choice. Please try again.")
 
 
 
@@ -99,9 +101,9 @@ class Main_Interfaces:
             print("4. Quit")
 
             try:
-                managerChoice = int(input("Please select an option (1-5): "))
+                managerChoice = int(input("Please select an option (1-4): "))
             except ValueError:
-                print("Invalid input. Please enter a number from 1-5.")
+                print("Invalid input. Please enter a number from 1-4.")
                 continue
 
 
@@ -109,7 +111,7 @@ class Main_Interfaces:
                 stocks.check_stock()
 
             elif managerChoice == 2:
-                inventory.main_menu()
+                inventory.Inventory_menu()
 
             elif managerChoice == 3:
                 place_order.PlaceManagerOrder(manager)
@@ -117,3 +119,5 @@ class Main_Interfaces:
             elif managerChoice == 4:
                 print("Goodbye!")
                 break
+            else:
+                print("Invalid choice. Please try again.")

@@ -12,11 +12,16 @@ class CustomerSupport:
     def support_options(self, customerID: int, customerfName: str):
         print("Welcome to Customer Support! How can we assist you today?")
         print("1. Enter a new support enquiry: ")
-        print("2. View response to my support enquiries(if any): ")
-        choice = int(input("Please select an option (1-2): "))
+        print("2. View response(s) to my support enquiries(if any): ")
+        
 
         customerID= str(customerID)
         customerfName = str(customerfName)
+        try:
+            choice = int(input("Please select an option (1-2): "))
+        except ValueError:
+            print("Invalid input. Please enter a number from 1-2.")
+            return
 
         if choice == 1:
             message = input("Please enter your support enquiry:")
@@ -42,7 +47,7 @@ class CustomerSupport:
                 reader = csv.DictReader(file)
                 for row in reader:
                     if row.get("customerID") == customerID:
-                        print(f"Enquiry ID: {row['supportID']} | Message: {row['CustomerMessage']} | Response: {row['staffResponse'] if row['staffResponse'] else 'No response yet.'}")
+                        print(f"Support ID: {row['supportID']} | Message: {row['CustomerMessage']} | Response: {row['staffResponse'] if row['staffResponse'] else 'No response yet.'}")
 
 
 
@@ -58,9 +63,13 @@ class CustomerSupport:
             for row in reader:
                 if row.get("staffID") == '0':
                     notResponded.append(row)
+            
+            if not notResponded:
+                print("No support enquiries awaiting response.")
+                return
 
             for enquiry in notResponded:
-                print(f"Enquiry ID: {enquiry['supportID']} | Customer ID: {enquiry['customerID']} | Customer Name: {enquiry['customerfName']} | Message: {enquiry['CustomerMessage']}")
+                print(f"Support ID: {enquiry['supportID']} | Customer ID: {enquiry['customerID']} | Customer Name: {enquiry['customerfName']} | Message: {enquiry['CustomerMessage']}")
             
         support_id = input("Enter the support ID you want to respond to (or 'q' to quit): ")
 
