@@ -23,7 +23,12 @@ class signUp:
             print("2. Staff Sign Up")
             print("3. Customer Sign Up")
             print("4. Back to Main Menu")
-            choice = int(input("Choose an option (1-4): "))
+
+            try:
+                choice = int(input("Choose an option (1-4): "))
+            except ValueError:
+                print("Invalid Input. Please enter a number corresponding to the options.")
+                continue
 
             if choice == 1:
                 verify.sign_up_manager(input("Enter New Manager First Name: "), input("Enter New Manager Last Name: "), input("Enter New Manager Username: "), input("Enter New Manager Password: "))
@@ -35,6 +40,6 @@ class signUp:
                 verify.sign_up_customer(input("Enter New Customer First Name: "), input("Enter New Customer Last Name: "), input("Enter New Customer Username: "), input("Enter New Customer Password: "), input("Enter New Customer Address: "), input("Enter New Customer Phone Number: "))
                 break
             elif choice == 4:
-                break
+                return
             else:
                 print("Invalid choice. Please try again.")

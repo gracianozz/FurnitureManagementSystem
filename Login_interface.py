@@ -86,7 +86,6 @@ class LoginInterface:
 
             elif choice == 4:
                 sign_up.signUp_choices()
-                break
 
             elif choice == 5:
                 print("Exiting the Furniture Management System. Goodbye!")
