@@ -26,19 +26,28 @@ class LoginInterface:
 
 # The user_choice method prompts the user to select a login option and handles the login process based on the user's choice.
     def display_login_menu(self):
-        print ("===============================================")
         print("Welcome to the Furniture Management System!")
         print("Here are the available options to Log in / Sign up: ")
+
         while True:
             print("1. Manager Login")
             print("2. Staff Login")
             print("3. Customer Login")
             print("4. Sign Up")
             print("5. Exit")
-            choice = int(input("Please select an option (1-5): "))
+
+            try:
+                choice = int(input("Please select an option (1-5): "))
+            except ValueError:
+                print("Invalid input. Please enter a number corresponding to the options.")
+                print("===============================================")
+                continue
 
             if choice == 1:
-                row = verify.check_manager_credentials(input("Enter Manager Username: "), input("Enter Manager Password: "))
+                row = verify.check_manager_credentials(
+                    input("Enter Manager Username: "),
+                    input("Enter Manager Password: ")
+                )
                 if row:
                     manager = Manager(fname=row["fName"], lname=row["lName"], manager_id=int(row["managerID"]))
                     main_interfaces.Manager_Interface(manager)
@@ -47,7 +56,10 @@ class LoginInterface:
                     print("Invalid credentials. Please try again.")
 
             elif choice == 2:
-                row = verify.check_staff_credentials(input("Enter Staff Username: "), input("Enter Staff Password: "))
+                row = verify.check_staff_credentials(
+                    input("Enter Staff Username: "),
+                    input("Enter Staff Password: ")
+                )
                 if row:
                     staff = Staff(fname=row["fName"], lname=row["lName"], staff_id=int(row["staffID"]))
                     main_interfaces.Staff_Interface(staff)
@@ -56,7 +68,10 @@ class LoginInterface:
                     print("Invalid credentials. Please try again.")
 
             elif choice == 3:
-                row = verify.check_customer_credentials(input("Enter Customer Username: "), input("Enter Customer Password: "))
+                row = verify.check_customer_credentials(
+                    input("Enter Customer Username: "),
+                    input("Enter Customer Password: ")
+                )
                 if row:
                     customer = Customer(customer_id=int(row["customerID"]))
                     customer.setFName(row["fName"])
@@ -68,7 +83,7 @@ class LoginInterface:
                     break
                 else:
                     print("Invalid credentials. Please try again.")
-                
+
             elif choice == 4:
                 sign_up.signUp_choices()
                 break
@@ -79,4 +94,5 @@ class LoginInterface:
 
             else:
                 print("Invalid choice. Please try again.")
+        
 

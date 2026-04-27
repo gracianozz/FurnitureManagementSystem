@@ -32,7 +32,12 @@ class Main_Interfaces:
             print("3. Track My Order(s)")
             print("4. Customer Support")
             print("5. Quit")
-            choice = int(input("Please select an option (1-5): "))
+
+            try:
+                choice = int(input("Please select an option (1-5): "))
+            except ValueError:
+                print("Invalid input. Please enter a number from 1-5.")
+                continue
 
             if choice == 1:
                 search.FurnitureSearch()
@@ -50,6 +55,9 @@ class Main_Interfaces:
                 print("Goodbye!")
                 break
 
+            else:
+                print("Invalid choice. Please try again.")
+
 
 
 
@@ -62,7 +70,12 @@ class Main_Interfaces:
             print("1. Customer Support")
             print("2. Furniture Search")
             print("3. Quit")
-            staffChoice = int(input("Please select an option (1-3): "))
+
+            try:
+                staffChoice = int(input("Please select an option (1-5): "))
+            except ValueError:
+                print("Invalid input. Please enter a number from 1-5.")
+                continue
 
             if staffChoice == 1:
                 support.contact_support(staff.staffID)
@@ -84,7 +97,13 @@ class Main_Interfaces:
             print("2. Manage Inventory")
             print("3. Place Inventory Order")
             print("4. Quit")
-            managerChoice = int(input("Please select an option (1-4): "))
+
+            try:
+                managerChoice = int(input("Please select an option (1-5): "))
+            except ValueError:
+                print("Invalid input. Please enter a number from 1-5.")
+                continue
+
 
             if managerChoice == 1:
                 stocks.check_stock()
