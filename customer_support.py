@@ -9,6 +9,7 @@ class CustomerSupport:
     def __init__(self):
         pass
 
+    # Customer view 
     def support_options(self, customerID: int, customerfName: str):
         print("Welcome to Customer Support! How can we assist you today?")
         print("1. Enter a new support enquiry: ")
@@ -29,16 +30,18 @@ class CustomerSupport:
                 fieldnames = ["supportID", "customerID", "customerfName", "CustomerMessage", "staffResponse", "staffID"]
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
 
+                # Generate supportID
                 with open(CustomerSupport_PATH, "r") as file:
                     rows = list(csv.DictReader(file))
                     supportID = max(int(r["supportID"]) for r in rows) + 1 if rows else 1
 
+                # append mode, customer inputs message, fName and IDs are auto-assigned
                 writer.writerow({
                     "supportID": supportID,
                     "customerID": customerID,
                     "customerfName": customerfName,
                     "CustomerMessage": message,
-                    "staffResponse": "",
+                    "staffResponse": "", #
                     "staffID": '0'
                 })
         else:
@@ -50,11 +53,12 @@ class CustomerSupport:
                         print(f"Support ID: {row['supportID']} | Message: {row['CustomerMessage']} | Response: {row['staffResponse'] if row['staffResponse'] else 'No response yet.'}")
 
 
-
+    # Staff view
     def contact_support(self, staffID: int):
         print("Connecting to customer support...")
 
         print("Displaying customer support enquiries yet to be responded to:")
+        # Find all tickets where staff ID is 0
         with open(CustomerSupport_PATH, "r") as file:
             reader = csv.DictReader(file)
 
@@ -70,7 +74,8 @@ class CustomerSupport:
 
             for enquiry in notResponded:
                 print(f"Support ID: {enquiry['supportID']} | Customer ID: {enquiry['customerID']} | Customer Name: {enquiry['customerfName']} | Message: {enquiry['CustomerMessage']}")
-            
+
+        # Select ticket
         support_id = input("Enter the support ID you want to respond to (or 'q' to quit): ")
 
         if support_id.lower() == 'q':
@@ -79,6 +84,7 @@ class CustomerSupport:
         else:
             response = input("Enter your response to the customer: ")
 
+            # Update record with response
             updated_rows = []
             with open(CustomerSupport_PATH, "r") as file:
                 reader = csv.DictReader(file)
@@ -88,6 +94,7 @@ class CustomerSupport:
                         row["staffResponse"] = response
                     updated_rows.append(row)
 
+            # Add response to csv, overwrites existing csv with updated version
             with open(CustomerSupport_PATH, "w", newline="") as file:
                 fieldnames = ["supportID", "customerID", "customerfName", "CustomerMessage", "staffResponse", "staffID"]
                 writer = csv.DictWriter(file, fieldnames=fieldnames)
