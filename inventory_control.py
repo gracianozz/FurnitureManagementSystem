@@ -6,6 +6,7 @@ class inventory_control:
         self.file_path = "Inventory/inventory.csv"
         self.headers = ["InventoryID", "SKU_ID", "InventoryName", "Location", "Status", "Quantity", "Price"]
 
+    # Method for reading data, for code brevity
     def _read_data(self):
         try:
             with open(self.file_path, "r", newline='') as file:
@@ -13,21 +14,23 @@ class inventory_control:
         except FileNotFoundError:
             return []
 
+    # Method for writing data, for code brevity
     def _write_data(self, rows):
         with open(self.file_path, "w", newline='') as file:
             writer = csv.DictWriter(file, fieldnames=self.headers)
             writer.writeheader()
             writer.writerows(rows)
-    
+
+    # Logic for assigning InventoryID and skuID
     def get_next_ids(self):
         rows = [r for r in self._read_data() if r["InventoryID"].isdigit()]
 
         existing_ids = [int(r["InventoryID"]) for r in rows]
-        next_inv_id = str(max(existing_ids) + 1) if existing_ids else "2001"
+        next_inv_id = str(max(existing_ids) + 1) if existing_ids else "2001" # ranges from 2001 to 9999
 
         used_skus = {int(r["SKU_ID"][3:]) for r in rows if r["SKU_ID"].startswith("SKU") and r["SKU_ID"][3:].isdigit()}
         next_sku_num = 101
-        for i in range(101, 999):
+        for i in range(101, 999): # ranges from 101 to 999
             if i not in used_skus:
                 next_sku_num = i
                 break
@@ -35,9 +38,29 @@ class inventory_control:
 
     def add_furniture(self, name):
         inv_id, sku_id = self.get_next_ids()
-        location = input("Location: ")
-        quantity = int(input("Quantity: "))
-        price = float(input("Price: "))
+        # User inputs Location, Quantity, and Price
+        # --- Location (String) ---
+        while True:
+            location = input("Location: ").strip()
+            if location and not location.isdigit(): # Ensures it's not empty and not just numbers
+                break
+            print("Invalid input. Please enter a valid location name.")
+        
+        # --- Quantity (Integer) ---
+        while True:
+            try:
+                quantity = int(input("Quantity: "))
+                break # Exit loop if conversion to int succeeds
+            except ValueError:
+                print("Invalid input. Please enter a whole number (integer).")
+        
+        # --- Price (Float) ---
+        while True:
+            try:
+                price = float(input("Price: "))
+                break # Exit loop if conversion to float succeeds
+            except ValueError:
+                print("Invalid input. Please enter a decimal number (float).")
 
         new_row = {
             "InventoryID": inv_id,
@@ -62,6 +85,7 @@ class inventory_control:
         if not matches:
             return
 
+        # Choose specific item if there are multiple matches
         if len(matches) > 1:
             print("\nMultiple items found. Which one would you like to remove?")
             for i, item in enumerate(matches):
@@ -93,6 +117,7 @@ class inventory_control:
             print("Item not found.")
             return
 
+        # Choose specific item if there are multiple matches
         if len(matches) > 1:
             print("\nMultiple items found. Which one would you like to edit?")
             for i, item in enumerate(matches):
@@ -118,6 +143,7 @@ class inventory_control:
             print("Item not found in inventory.")
             return
 
+        # User inputs all edit-able variables of an object, Enter to leave them the same
         print(f"Editing {item['InventoryName']}. Press Enter to skip fields.")
         item["InventoryName"] = input(f"Name [{item['InventoryName']}]: ") or item["InventoryName"]
         item["Location"] = input(f"Location [{item['Location']}]: ") or item["Location"]
