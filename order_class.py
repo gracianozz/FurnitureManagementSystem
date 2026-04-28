@@ -19,6 +19,7 @@ class Order:
     self.purchase_date = datetime.now()
     self.estimated_delivery = self.purchase_date + timedelta(days=7)
 
+  # Prints all orders made by the selected customer
   @classmethod
   def viewOrders(cls, customer_id):
     found = []
