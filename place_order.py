@@ -23,12 +23,13 @@ class Place_Order:
         print(f"Searching for {search}...")
         found_items = []
 
+        # Find items with matching names in csv
         with open(INVENTORY_PATH, "r") as file:
             reader = csv.DictReader(file)
             for row in reader:
                 if row.get("InventoryName") == search:
                     found_items.append(row)
-
+        
         if not found_items:
             print(f"No items found matching '{search}'.")
         else:
@@ -36,12 +37,13 @@ class Place_Order:
             for item in found_items:
                 print(f"  - {item.get('InventoryName')} | Price: ${float(item.get('Price', 0)):.2f} | Qty: {item.get('Quantity')}")
 
+        # Loops until the customer is done adding items
         again = input("Would you like to search again? (y/n): ")
         if again.lower() == "y":
             self.PlaceCustomerOrder(customer)
         elif again.lower() == "n" and found_items:
-            total_available = sum(int(item.get("Quantity", 0)) for item in found_items)
-            if total_available == 0:
+            total_available = sum(int(item.get("Quantity", 0)) for item in found_items) # Check if item is available
+            if total_available == 0: 
                 print("Sorry, this item is currently out of stock.")
             else:
                 self.calculatePrice(search, found_items, customer.getCustomerID())
@@ -54,14 +56,15 @@ class Place_Order:
 
         with open(INVENTORY_PATH, "r") as file:
             reader = csv.DictReader(file)
-            for row in reader:
-                if row.get("InventoryName") == search and int(row.get("Quantity", 0)) >= amount:
+            for row in reader: # Check if there is enough of item to meet customer demand
+                if row.get("InventoryName") == search and int(row.get("Quantity", 0)) >= amount: 
                     total_price = amount * float(results[0]["Price"])
                     self.checkout(total_price, search, amount, customer_id, sku_id)
                     return
 
         print(f"Not enough stock to fulfill an order of {amount}.")
 
+    # Print price, update invetory, save order
     def checkout(self, total_price, search, amount, customer_id, sku_id):
         print(f"Checkout complete. Total price: ${total_price:.2f}")
         self.updateInventory(search, amount)
@@ -80,6 +83,7 @@ class Place_Order:
         purchase_date = date.today()
         estimated_delivery = purchase_date + timedelta(days=7)
 
+        # Append mode, applies each variable for an order object
         rows.append({
             "OrderID": order_id,
             "CustomerID": customer_id,
@@ -100,13 +104,14 @@ class Place_Order:
         rows = []
         fieldnames = []
 
+        # Update csv based on the changes due to order
         with open(INVENTORY_PATH, "r") as file:
             reader = csv.DictReader(file)
             fieldnames = reader.fieldnames
             for row in reader:
                 if row.get("InventoryName") == search:
                     new_qty = int(row["Quantity"]) - amount
-                    row["Quantity"] = str(new_qty)
+                    row["Quantity"] = str(new_qty) # Lower quantity and update status
                     if row["Status"] != "Reserved":
                         if new_qty == 0:
                             row["Status"] = "Out of Stock"
@@ -131,6 +136,7 @@ class Place_Order:
         print(f"Searching for {search}...")
         found_items = []
 
+        # Find matching item in inventory
         with open(INVENTORY_PATH, "r") as file:
             reader = csv.DictReader(file)
             for row in reader:
@@ -144,12 +150,13 @@ class Place_Order:
             for item in found_items:
                 print(f"  - {item.get('InventoryName')} | Price: ${float(item.get('Price', 0)):.2f} | Qty: {item.get('Quantity')}")
 
+        # Loop until manager is done adding items
         again = input("Would you like to search again? (y/n): ")
         if again.lower() == "y":
             self.PlaceManagerOrder(manager)
         elif again.lower() == "n" and found_items:
             if len(found_items) > 1:
-                print("\nMultiple items found. Which one would you like to restock?")
+                print("\nMultiple items found. Which one would you like to restock?") # Choose specific item if there are multiple matches
                 for i, item in enumerate(found_items):
                     print(f"  {i + 1}. {item['InventoryName']} | Location: {item['Location']} | Qty: {item['Quantity']} (SKU: {item['SKU_ID']})")
                 try:
@@ -163,6 +170,7 @@ class Place_Order:
             else:
                 target_sku = found_items[0]["SKU_ID"]
 
+            # Input how much quantity should increase, with exception handling
             try:
                 added = int(input(f"How many units would you like to add?: "))
             except ValueError:
@@ -178,13 +186,14 @@ class Place_Order:
         fieldnames = []
         updated_name = ""
 
+        # Update csv based on the changes due to order
         with open(INVENTORY_PATH, "r") as file:
             reader = csv.DictReader(file)
             fieldnames = reader.fieldnames
             for row in reader:
                 if row.get("SKU_ID") == target_sku:
                     new_qty = int(row["Quantity"]) + amount
-                    row["Quantity"] = str(new_qty)
+                    row["Quantity"] = str(new_qty) # Increase quantity and update status
                     updated_name = row["InventoryName"]
                     if row["Status"] != "Reserved":
                         if new_qty == 0:
