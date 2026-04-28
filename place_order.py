@@ -38,20 +38,35 @@ class Place_Order:
                 print(f"  - {item.get('InventoryName')} | Price: ${float(item.get('Price', 0)):.2f} | Qty: {item.get('Quantity')}")
 
         # Loops until the customer is done searching for items
-        again = input("Would you like to search again? (y/n): ")
+        try:
+            again = input("Would you like to search again? (y/n): ")
+        except ValueError:
+                print("Invalid input. Please enter 'y' or 'n'.")
+                return
         if again.lower() == "y":
             self.PlaceCustomerOrder(customer)
+        
         elif again.lower() == "n" and found_items:
             total_available = sum(int(item.get("Quantity", 0)) for item in found_items) # Check if item is available
             if total_available == 0: 
                 print("Sorry, this item is currently out of stock.")
             else:
                 self.calculatePrice(search, found_items, customer.getCustomerID())
+        
+        else:
+            print("Invalid input. Please enter 'y' or 'n'.")
+            return
+        
 
 
     #Calculates total price, and progresses to checkout
     def calculatePrice(self, search, results, customer_id):
-        amount = int(input(f"How many {search}s would you like to order?: "))
+
+        try:
+            amount = int(input(f"How many {search}s would you like to order?: "))
+        except ValueError:
+            print("Invalid input. Please enter a valid quantity.")
+            return
         sku_id = results[0]["SKU_ID"]
 
         with open(INVENTORY_PATH, "r") as file:
