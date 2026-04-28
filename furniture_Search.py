@@ -21,17 +21,19 @@ class Furniture_Search:
 
         found_items = []
 
+        # Check csv for the item they're searching for
         try:
             with open("Inventory/inventory.csv", "r") as file:
                 reader = csv.DictReader(file)
                 for row in reader:
                     if row.get("InventoryName", "").lower() == search_term.lower():
                         found_items.append(row)
-        except FileNotFoundError:
+        except FileNotFoundError:  # Throw error if file couldn't be opened
             print("Error: Inventory file not found.")
             return []
 
         self.displaySearchResults(search_term, found_items)
+        # Pass matches so other methods can use them
         return found_items
 
     def displaySearchResults(self, search, results):
