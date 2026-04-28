@@ -36,6 +36,7 @@ class Furniture_Search:
         # Pass matches so other methods can use them
         return found_items
 
+    # Displays search results in a user-friendly format
     def displaySearchResults(self, search, results):
         print(f"\nDisplaying search results for '{search}':")
 

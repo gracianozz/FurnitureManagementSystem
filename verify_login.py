@@ -56,6 +56,7 @@ class verifyLogin:
                 with open(filepath, "a") as f:
                     f.write('\n')
 
+    #Sign up method for managers, checks for unique username and adds new manager to the managers.csv file
     def sign_up_manager(self, fname, lname, username, password):
         last_id = 0
         with open("Managers/managers.csv", "r") as file:
@@ -75,6 +76,7 @@ class verifyLogin:
         print("Manager account created successfully!")
         return True
 
+    #Sign up method for staff, checks for unique username and adds new staff member to the staff.csv file
     def sign_up_staff(self, fname, lname, username, password):
         last_id = 0
         with open("Staff/staff.csv", "r") as file:
@@ -94,6 +96,7 @@ class verifyLogin:
         print("Staff account created successfully!")
         return True
 
+    #Sign up method for customers, checks for unique username and adds new customer to the customers.csv file
     def sign_up_customer(self, fname, lname, username, password, address, phoneNum):
         last_id = 0
         with open("Customers/customers.csv", "r") as file:

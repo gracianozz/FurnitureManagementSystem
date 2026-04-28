@@ -5,6 +5,7 @@ class FurnitureMenu:
         # Create an instance of the control class to use its methods
         self.control = inventory_control()
 
+    #Main menu for manager inventory management
     def Inventory_menu(self):
         while True:
             print("\n--- Furniture Inventory System ---")

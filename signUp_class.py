@@ -13,7 +13,8 @@ verify = verifyLogin()
 class signUp:
     def __init__(self):
         pass
-
+    
+    #User CLI for signing up as a manager, staff, or customer 
     def signUp_choices(self):
 
         print("Furniture Management System Sign Up Section")

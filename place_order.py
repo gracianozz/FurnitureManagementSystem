@@ -37,7 +37,7 @@ class Place_Order:
             for item in found_items:
                 print(f"  - {item.get('InventoryName')} | Price: ${float(item.get('Price', 0)):.2f} | Qty: {item.get('Quantity')}")
 
-        # Loops until the customer is done adding items
+        # Loops until the customer is done searching for items
         again = input("Would you like to search again? (y/n): ")
         if again.lower() == "y":
             self.PlaceCustomerOrder(customer)
@@ -49,7 +49,7 @@ class Place_Order:
                 self.calculatePrice(search, found_items, customer.getCustomerID())
 
 
-
+    #Calculates total price, and progresses to checkout
     def calculatePrice(self, search, results, customer_id):
         amount = int(input(f"How many {search}s would you like to order?: "))
         sku_id = results[0]["SKU_ID"]
@@ -70,6 +70,7 @@ class Place_Order:
         self.updateInventory(search, amount)
         self.saveOrder(customer_id, sku_id)
 
+    #Save the new order details to orders.csv
     def saveOrder(self, customer_id, sku_id):
         fieldnames = ["OrderID", "CustomerID", "SKU_ID", "OrderStatus", "PurchaseDate", "EstimatedDelivery"]
         rows = []
@@ -100,6 +101,7 @@ class Place_Order:
 
         print(f"Order #{order_id} saved! Estimated delivery: {estimated_delivery.strftime('%Y-%m-%d')}")
 
+    #Update the inventory after a customer places and order.
     def updateInventory(self, search, amount):
         rows = []
         fieldnames = []
@@ -126,6 +128,7 @@ class Place_Order:
             writer.writeheader()
             writer.writerows(rows)
 
+    #Process and logic of a manager placing an order
     def PlaceManagerOrder(self, manager):
         search = input("Enter furniture name to order: ")
 
@@ -181,6 +184,7 @@ class Place_Order:
                 return
             self.restockInventory(target_sku, added)
 
+    #After making an order, restock the inventory based on the manager's input
     def restockInventory(self, target_sku, amount):
         rows = []
         fieldnames = []

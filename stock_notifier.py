@@ -8,10 +8,12 @@ import csv
 INVENTORY_PATH = "Inventory/inventory.csv"
 NOTIS_PATH = "stockNotifications/stockNotis.csv"
 
+
 class stockNotifier:
     def __init__(self):
         pass
-
+    
+    # Checks inventory for low stock items and generates notifications
     def check_stock(self):
         low_stock_items = []
 
@@ -34,6 +36,7 @@ class stockNotifier:
         print(f"{len(low_stock_items)} low stock item(s) found.")
         self.displayStockAlerts()
 
+    # Displays current low stock notifications
     def displayStockAlerts(self):
         print("\n===============================================")
         print("Stock Alerts:")

@@ -36,6 +36,7 @@ class inventory_control:
                 break
         return next_inv_id, f"SKU{next_sku_num}"
 
+    #Adding furniture to inventory
     def add_furniture(self, name):
         inv_id, sku_id = self.get_next_ids()
         # User inputs Location, Quantity, and Price
@@ -78,6 +79,7 @@ class inventory_control:
 
         print(f"Success: Added {name} as {sku_id}")
 
+    # Removing furniture from inventory
     def remove_furniture(self, search_term):
         search_tool = Furniture_Search()
         matches = search_tool.FurnitureSearch(search_term)
@@ -109,6 +111,7 @@ class inventory_control:
         self._write_data(rows)
         print(f"Item {target_sku} removed successfully.")
 
+    # Editing furniture details in inventory
     def edit_furniture(self, search_term):
         search_tool = Furniture_Search()
         matches = search_tool.FurnitureSearch(search_term)
