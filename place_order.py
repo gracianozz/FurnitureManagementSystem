@@ -64,7 +64,7 @@ class Place_Order:
 
         print(f"Not enough stock to fulfill an order of {amount}.")
 
-    # Print price, update invetory, save order
+    # Print price, update inventory, save order
     def checkout(self, total_price, search, amount, customer_id, sku_id):
         print(f"Checkout complete. Total price: ${total_price:.2f}")
         self.updateInventory(search, amount)
